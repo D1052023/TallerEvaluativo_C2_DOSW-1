@@ -23,7 +23,7 @@ public class SwaggerConfig {
     public OpenAPI apiInfo() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("MÁSTER CHEF CELEBRITY API")
+                        .title("MASTER CHEF CELEBRITY API")
                         .description("API para la gestión de recetas de cocina")
                         .version("1.0"));
     }

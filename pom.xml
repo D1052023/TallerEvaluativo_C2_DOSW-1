@@ -22,17 +22,36 @@
         <sonar.projectName>library</sonar.projectName>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.coverage.exclusions>src//configurators/**</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>
+            src/main/java/**/aop/**,
+            src/main/java/**/models/**,
+            src/main/java/**/dtos/**,
+            src/main/java/**/mappers/**,
+            src/main/java/**/enums/**,
+            src/main/java/**/specifications/**,
+            src/main/java/**/configs/**,
+            src/main/java/**/security/**,
+            src/main/java/**/exceptions/**,
+            src/main/java/**/utils/**,
+            src/main/java/**/repositories/**,
+            src/main/java/**/validators/**,
+            src/main/java/**/*Application*.java
+        </sonar.coverage.exclusions>
 
         <jacoco.exclusions.pattern>
-            */aop/*,
-            */models/*,
-            */dtos/*,
-            */enums/*,
-            */specifications/*,
-            */configs/*,
-            */security/*,
-            **/ClassApplication.class
+            **/aop/**,
+            **/models/**,
+            **/dtos/**,
+            **/mappers/**,
+            **/enums/**,
+            **/specifications/**,
+            **/configs/**,
+            **/security/**,
+            **/exceptions/**,
+            **/utils/**,
+            **/repositories/**,
+            **/validators/**,
+            **/*Application.class
         </jacoco.exclusions.pattern>
     </properties>
 

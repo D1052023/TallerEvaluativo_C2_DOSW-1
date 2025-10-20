@@ -93,4 +93,13 @@ public class RecetaServiceImpl implements RecetaService {
                 .map(RecetaMapper::toDTO)
                 .toList();
     }
+    @Override
+    public List<RecetaDTO> obtenerRecetasPorTelevidentes() {
+        List<Receta> todas = recetaRepository.findAll();
+        FilterStrategy filtro = new FilterByTypeChef(TypeChef.TELEVIDENTE);
+        return filtro.filter(todas)
+                .stream()
+                .map(RecetaMapper::toDTO)
+                .toList();
+    }
 }

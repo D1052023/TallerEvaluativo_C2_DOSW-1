@@ -44,6 +44,10 @@ public class RecetaController {
     public ResponseEntity<List<RecetaDTO>> obtenerRecetasParticipantes() {
         return ResponseEntity.ok(recetaService.obtenerRecetasPorParticipantes());
     }
+    @GetMapping("/televidentes")
+    public ResponseEntity<List<RecetaDTO>> obtenerRecetasTelevidentes() {
+        return ResponseEntity.ok(recetaService.obtenerRecetasPorTelevidentes());
+    }
 
 
 }

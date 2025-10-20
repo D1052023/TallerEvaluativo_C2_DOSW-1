@@ -52,6 +52,7 @@ public class RecetaServiceImpl implements RecetaService {
         return RecetaMapper.toDTO(receta);
     }
 
+
     @Override
     public List<RecetaDTO> obtenerTodas() {
         return recetaRepository.findAll().stream()

@@ -27,6 +27,7 @@ public class RecetaController {
         return ResponseEntity.ok(recetaService.registrarRecetaParticipante(recetaDTO));
     }
 
+
     @GetMapping
     public ResponseEntity<List<RecetaDTO>> obtenerTodas() {
         return ResponseEntity.ok(recetaService.obtenerTodas());

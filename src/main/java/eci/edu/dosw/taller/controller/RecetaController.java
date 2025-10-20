@@ -27,6 +27,10 @@ public class RecetaController {
         return ResponseEntity.ok(recetaService.registrarRecetaParticipante(recetaDTO));
     }
 
+    @PostMapping("/jurado")
+    public ResponseEntity<RecetaDTO> registrarRecetaJurado(@RequestBody RecetaDTO recetaDTO) {
+        return ResponseEntity.ok(recetaService.registrarRecetaJurado(recetaDTO));
+    }
 
     @GetMapping
     public ResponseEntity<List<RecetaDTO>> obtenerTodas() {

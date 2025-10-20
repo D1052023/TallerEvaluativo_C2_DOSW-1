@@ -6,5 +6,6 @@ import java.util.List;
 public interface RecetaService {
     RecetaDTO registrarRecetaTelevidente(RecetaDTO receta);
     RecetaDTO registrarRecetaParticipante(RecetaDTO receta);
+    RecetaDTO registrarRecetaJurado(RecetaDTO receta);
     List<RecetaDTO> obtenerTodas();
 }

@@ -52,6 +52,21 @@ public class RecetaServiceImpl implements RecetaService {
         return RecetaMapper.toDTO(receta);
     }
 
+    @Override
+    public RecetaDTO registrarRecetaJurado(RecetaDTO dto) {
+        if (dto.getTypeChef() != null &&
+                !dto.getTypeChef().equalsIgnoreCase("Jurado")) {
+            throw new IllegalArgumentException("Solo se pueden registrar recetas de Jurados en este endpoint.");
+        }
+        if (dto.getTemporada() != null) {
+            throw new IllegalArgumentException("Un jurado no tiene temporada asignada.");
+        }
+
+        dto.setTypeChef("Jurado");
+        Receta receta = RecetaMapper.toEntity(dto);
+        recetaRepository.save(receta);
+        return RecetaMapper.toDTO(receta);
+    }
 
     @Override
     public List<RecetaDTO> obtenerTodas() {

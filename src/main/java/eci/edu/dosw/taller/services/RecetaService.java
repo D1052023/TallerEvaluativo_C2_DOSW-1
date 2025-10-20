@@ -9,4 +9,6 @@ public interface RecetaService {
     RecetaDTO registrarRecetaJurado(RecetaDTO receta);
     List<RecetaDTO> obtenerTodas();
     RecetaDTO obtenerRecetaPorId(String id);
+    List<RecetaDTO> obtenerRecetasPorParticipantes();
+    
 }

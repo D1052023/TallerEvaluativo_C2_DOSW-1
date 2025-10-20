@@ -40,5 +40,10 @@ public class RecetaController {
     public ResponseEntity<RecetaDTO> obtenerPorId(@PathVariable String id) {
         return ResponseEntity.ok(recetaService.obtenerRecetaPorId(id));
     }
+    @GetMapping("/participantes")
+    public ResponseEntity<List<RecetaDTO>> obtenerRecetasParticipantes() {
+        return ResponseEntity.ok(recetaService.obtenerRecetasPorParticipantes());
+    }
+
 
 }

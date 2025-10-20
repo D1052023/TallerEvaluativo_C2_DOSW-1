@@ -1,7 +1,10 @@
 package eci.edu.dosw.taller.services;
 
 import eci.edu.dosw.taller.dtos.RecetaDTO;
+import eci.edu.dosw.taller.enums.TypeChef;
 import eci.edu.dosw.taller.mappers.RecetaMapper;
+import eci.edu.dosw.taller.models.FilterByTypeChef;
+import eci.edu.dosw.taller.models.FilterStrategy;
 import eci.edu.dosw.taller.models.Receta;
 import eci.edu.dosw.taller.repositories.RecetaRepository;
 import eci.edu.dosw.taller.services.RecetaService;
@@ -80,5 +83,14 @@ public class RecetaServiceImpl implements RecetaService {
                 .map(RecetaMapper::toDTO)
                 .orElseThrow(() ->
                         new IllegalArgumentException("No existe una receta con el ID: " + id));
+    }
+    @Override
+    public List<RecetaDTO> obtenerRecetasPorParticipantes() {
+        List<Receta> todas = recetaRepository.findAll();
+        FilterStrategy filtro = new FilterByTypeChef(TypeChef.PARTICIPANTE);
+        return filtro.filter(todas)
+                .stream()
+                .map(RecetaMapper::toDTO)
+                .toList();
     }
 }

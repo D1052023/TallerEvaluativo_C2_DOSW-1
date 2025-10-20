@@ -74,4 +74,11 @@ public class RecetaServiceImpl implements RecetaService {
                 .map(RecetaMapper::toDTO)
                 .toList();
     }
+    @Override
+    public RecetaDTO obtenerRecetaPorId(String id) {
+        return recetaRepository.findById(id)
+                .map(RecetaMapper::toDTO)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("No existe una receta con el ID: " + id));
+    }
 }

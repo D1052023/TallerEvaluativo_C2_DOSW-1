@@ -36,4 +36,9 @@ public class RecetaController {
     public ResponseEntity<List<RecetaDTO>> obtenerTodas() {
         return ResponseEntity.ok(recetaService.obtenerTodas());
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<RecetaDTO> obtenerPorId(@PathVariable String id) {
+        return ResponseEntity.ok(recetaService.obtenerRecetaPorId(id));
+    }
+
 }

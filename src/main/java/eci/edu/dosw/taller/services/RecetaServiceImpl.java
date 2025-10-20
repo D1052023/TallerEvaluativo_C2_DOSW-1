@@ -21,6 +21,32 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public RecetaDTO registrarRecetaTelevidente(RecetaDTO dto) {
+        if (dto.getTypeChef() != null &&
+                !dto.getTypeChef().equalsIgnoreCase("Televidente")) {
+            throw new IllegalArgumentException("Solo se pueden registrar recetas de televidentes en este endpoint.");
+        }
+
+        if (dto.getTemporada() != null) {
+            throw new IllegalArgumentException("Un televidente no tiene temporada asignada.");
+        }
+
+        dto.setTypeChef("Televidente");
+        Receta receta = RecetaMapper.toEntity(dto);
+        recetaRepository.save(receta);
+        return RecetaMapper.toDTO(receta);
+    }
+
+    @Override
+    public RecetaDTO registrarRecetaParticipante(RecetaDTO dto) {
+        if (dto.getTypeChef() != null &&
+                !dto.getTypeChef().equalsIgnoreCase("Participante")) {
+            throw new IllegalArgumentException("Solo se pueden registrar recetas de participantes en este endpoint.");
+        }
+        if (dto.getTemporada() == null) {
+            throw new IllegalArgumentException("La temporada es obligatoria para un participante.");
+        }
+
+        dto.setTypeChef("Participante");
         Receta receta = RecetaMapper.toEntity(dto);
         recetaRepository.save(receta);
         return RecetaMapper.toDTO(receta);
@@ -30,6 +56,6 @@ public class RecetaServiceImpl implements RecetaService {
     public List<RecetaDTO> obtenerTodas() {
         return recetaRepository.findAll().stream()
                 .map(RecetaMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

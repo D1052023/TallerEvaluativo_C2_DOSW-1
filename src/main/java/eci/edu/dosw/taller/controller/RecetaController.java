@@ -19,8 +19,12 @@ public class RecetaController {
 
     @PostMapping("/televidente")
     public ResponseEntity<RecetaDTO> registrarRecetaTelevidente(@RequestBody RecetaDTO recetaDTO) {
-        RecetaDTO creada = recetaService.registrarRecetaTelevidente(recetaDTO);
-        return ResponseEntity.ok(creada);
+        return ResponseEntity.ok(recetaService.registrarRecetaTelevidente(recetaDTO));
+    }
+
+    @PostMapping("/participante")
+    public ResponseEntity<RecetaDTO> registrarRecetaParticipante(@RequestBody RecetaDTO recetaDTO) {
+        return ResponseEntity.ok(recetaService.registrarRecetaParticipante(recetaDTO));
     }
 
     @GetMapping

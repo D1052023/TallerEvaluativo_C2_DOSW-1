@@ -11,4 +11,5 @@ public interface RecetaService {
     RecetaDTO obtenerRecetaPorId(String id);
     List<RecetaDTO> obtenerRecetasPorParticipantes();
     List<RecetaDTO> obtenerRecetasPorTelevidentes();
+    List<RecetaDTO> obtenerRecetasPorJurados();
 }

@@ -52,6 +52,24 @@ public class RecetaController {
     public ResponseEntity<List<RecetaDTO>> obtenerRecetasJurados() {
         return ResponseEntity.ok(recetaService.obtenerRecetasPorJurados());
     }
+    @GetMapping("/temporada/{temporada}")
+    public ResponseEntity<List<RecetaDTO>> obtenerPorTemporada(@PathVariable int temporada) {
+        return ResponseEntity.ok(recetaService.obtenerRecetasPorTemporadas(temporada));
+    }
+    @GetMapping("/ingrediente/{ingrediente}")
+    public ResponseEntity<List<RecetaDTO>> obtenerPorIngrediente(@PathVariable String ingrediente) {
+        return ResponseEntity.ok(recetaService.obtenerRecetasPorIngredientes(ingrediente));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminarReceta(@PathVariable String id) {
+        recetaService.eliminarReceta(id);
+        return ResponseEntity.ok("Receta eliminada correctamente");
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<RecetaDTO> actualizarReceta(@PathVariable String id,
+                                                      @RequestBody RecetaDTO recetaDTO) {
+        return ResponseEntity.ok(recetaService.actualizarReceta(id, recetaDTO));
+    }
 
 
 }

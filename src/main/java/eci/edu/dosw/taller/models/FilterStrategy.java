@@ -1,8 +1,7 @@
 package eci.edu.dosw.taller.models;
 
 import java.util.List;
-import eci.edu.dosw.taller.models.Receta;
-import java.util.stream.Collectors;
+
 
 /**
  * Interfaz encargada de filtrar las recetas

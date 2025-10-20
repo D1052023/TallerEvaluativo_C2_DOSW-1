@@ -3,15 +3,12 @@ package eci.edu.dosw.taller.services;
 import eci.edu.dosw.taller.dtos.RecetaDTO;
 import eci.edu.dosw.taller.enums.TypeChef;
 import eci.edu.dosw.taller.mappers.RecetaMapper;
-import eci.edu.dosw.taller.models.FilterByTypeChef;
-import eci.edu.dosw.taller.models.FilterStrategy;
-import eci.edu.dosw.taller.models.Receta;
+import eci.edu.dosw.taller.models.*;
 import eci.edu.dosw.taller.repositories.RecetaRepository;
 import eci.edu.dosw.taller.services.RecetaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RecetaServiceImpl implements RecetaService {
@@ -110,5 +107,50 @@ public class RecetaServiceImpl implements RecetaService {
                 .stream()
                 .map(RecetaMapper::toDTO)
                 .toList();
+    }
+    @Override
+    public List<RecetaDTO> obtenerRecetasPorTemporadas(int temporada) {
+        List<Receta> todas = recetaRepository.findAll();
+        FilterStrategy filtro = new FilterByTemporada(temporada);
+        return filtro.filter(todas)
+                .stream()
+                .map(RecetaMapper::toDTO)
+                .toList();
+    }
+    @Override
+    public List<RecetaDTO> obtenerRecetasPorIngredientes(String ingrediente) {
+        List<Receta> todas = recetaRepository.findAll();
+        FilterStrategy filtro = new FilterByIngredient(ingrediente);
+        return filtro.filter(todas)
+                .stream()
+                .map(RecetaMapper::toDTO)
+                .toList();
+    }
+    @Override
+    public void eliminarReceta(String id) {
+        if (!recetaRepository.existsById(id)) {
+            throw new IllegalArgumentException("No existe una receta con el ID: " + id);
+        }
+        recetaRepository.deleteById(id);
+    }
+    @Override
+    public RecetaDTO actualizarReceta(String id, RecetaDTO recetaActualizada) {
+        if (recetaActualizada.getId() != null && !recetaActualizada.getId().equals(id)) {
+            throw new IllegalArgumentException("No se puede modificar el ID de la receta");
+        }
+
+        Receta recetaExistente = recetaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No existe una receta con el ID: " + id));
+
+        recetaExistente.setTitulo(recetaActualizada.getTitulo());
+        recetaExistente.setIngredientes(recetaActualizada.getIngredientes());
+        recetaExistente.setPasos(recetaActualizada.getPasos());
+
+        if (recetaExistente.getChef() instanceof Participante participante) {
+            participante.setTemporada(recetaActualizada.getTemporada());
+        }
+
+        recetaRepository.save(recetaExistente);
+        return RecetaMapper.toDTO(recetaExistente);
     }
 }

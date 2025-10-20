@@ -5,7 +5,8 @@ import eci.edu.dosw.taller.enums.TypeChef;
 import eci.edu.dosw.taller.models.*;
 
 public class RecetaMapper {
-
+    private RecetaMapper() {
+    }
     public static Receta toEntity(RecetaDTO dto) {
         Chef chef = ChefFactory.createChef(
                 TypeChef.fromDisplayName(dto.getTypeChef()),

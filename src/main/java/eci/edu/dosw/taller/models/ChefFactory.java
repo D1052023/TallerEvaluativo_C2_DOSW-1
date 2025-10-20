@@ -17,4 +17,6 @@ public class ChefFactory {
                 throw new IllegalArgumentException("Tipo de chef no válido: " + type);
         }
     }
+    private ChefFactory() {
+    }
 }

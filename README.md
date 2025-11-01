@@ -81,4 +81,13 @@ Una vez que se verifiquen se observara que en detalles se puede ver que la confi
 ![alt text](docs/imagenes/img_8.png)
 Finalmente una vez pasadas todas las pruebas se podra abrir el API de azure
 al cual configuramos para que abra directamente el Swagger.
+
+
+---
+### Prueba Swagger
+
+LInK: https://youtu.be/n3shl8oaGmg
+Se logra comprobar el funcionamiento de los endpoints y que cumplan con las funcionalidades propuestas
+para el taller Evaluativo, Se probo los POTs, GETs, PUT y los DELETE.
+
 ---
